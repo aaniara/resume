@@ -1,4 +1,5 @@
 \documentclass[a4paper,11pt,english,final,hidelinks]{curve}
+\usepackage{soul} % For letter spacing with \so
 
 % Contact info here
 \newcommand{\firstname}{Aniara Lyn}
@@ -31,20 +32,45 @@
 %\prefixmarker{$\diamond$}
 
 %% Photo is only shown if "fullonly" is included
-%\includecomment{fullonly}
-\excludecomment{fullonly}
+\includecomment{fullonly}
+%\excludecomment{fullonly}
 
 \title{Curriculum Vitae}
 
 \begin{document}
 
+% --- Top block: Contact info (left) and photo (right) using TikZ ---
 \begin{center}
-    {\LARGE \scshape \firstname~\lastname} \\
-    \address \\
-    \small \href{tel:\phoneno}{ \raisebox{-0.1\height}\faPhone\ \underline{\phonenoprint} ~} \href{mailto:\email}{\raisebox{-0.2\height}\faEnvelope\  \underline{\email}} ~ 
-    \href{https://linkedin.com/in/\linkedin}{\raisebox{-0.2\height}\faLinkedin\ \underline{\linkedin}}  ~
-    \href{https://github.com/\github}{\raisebox{-0.2\height}\faGithub\ \underline{\github}} ~
-    \vspace{-5pt}
+\begin{tikzpicture}
+    \usetikzlibrary{shadows}
+    % Contact info box (left)
+    \node[anchor=west, inner sep=0pt, outer sep=0pt] (contact) at (0,0) {
+        \begin{minipage}[t]{0.75\textwidth}
+            {\Huge \scshape \textls[150]{\firstname~\lastname}} \\
+            \vspace{1pt}\\
+            {\textls[120]{\address}} \\
+            \small
+            \vspace{1pt}\\
+            {\textls[120]{\href{tel:\phoneno}{ \raisebox{-0.1\height}\faPhone\ \underline{\phonenoprint}}}} \\
+            \vspace{1pt}\\
+            {\textls[120]{\href{mailto:\email}{\raisebox{-0.2\height}\faEnvelope\  \underline{\email}}}} \\
+            \vspace{1pt}\\
+            {\textls[120]{\href{https://linkedin.com/in/\linkedin}{\raisebox{-0.2\height}\faLinkedin\ \underline{\linkedin}}}} \\
+            \vspace{1pt}\\
+            {\textls[120]{\href{https://github.com/\github}{\raisebox{-0.2\height}\faGithub\ \underline{\github}}}}
+        \end{minipage}
+    };
+    % Photo box (right)
+    \node[anchor=east, draw=gray!50, line width=0.5pt, rounded corners=3pt, drop shadow={opacity=0.3, shadow xshift=1pt, shadow yshift=-1pt}, inner sep=2pt] (photo) at (\textwidth,0) {
+        \includegraphics[width=4cm,clip,keepaspectratio]{portrait.jpg}
+    };
+\end{tikzpicture}
+\end{center}
+
+% --- Bio block below, full width ---
+\vspace{1pt}
+\begin{center}
+    {\small \textit{BSc Pharmacy graduate with hands-on experience in research, electronics, and design, skilled in problem-solving, experimentation, and multilingual communication.}}
 \end{center}
 
 \makerubric{employment}
@@ -52,7 +78,7 @@
 \makerubric{projects}
 \makerubric{skills}
 \makerubric{misc}
-
+\makerubric{volunteer}  
 %\input{publications}
 
 \makerubric{referee}

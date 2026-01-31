@@ -1,5 +1,5 @@
 cmake_minimum_required(VERSION 3.10)
-project(CurVeResume)
+project(CurVeResume LANGUAGES NONE)
 
 # Variables
 set(MAIN_FILE "main")
@@ -47,6 +47,7 @@ function(add_latex_flavor flavor)
             DEPENDS ${CMAKE_SOURCE_DIR}/${MAIN_FILE}.tex
                     ${CMAKE_SOURCE_DIR}/${MAIN_FILE}.bib
                     ${CMAKE_SOURCE_DIR}/settings.sty
+                    ${CMAKE_SOURCE_DIR}/portrait.jpg
             COMMENT "Building flavor: ${flavor} with ${COMPILER}"
         )
     elseif(COMPILER STREQUAL "lualatex")
